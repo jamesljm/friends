@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     @location = CGI::escape(@address)
     key = '&key=' + ENV['GOOGLE_MAP_KEY']
     @endpoint = url + @location + key
+    render 'show'
   end
 
   def search
