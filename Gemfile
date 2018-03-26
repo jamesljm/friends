@@ -79,3 +79,5 @@ group :development, :test do
   # gem 'guard-rspec'
   gem 'rails-controller-testing'
 end
+
+gem 'faker'
