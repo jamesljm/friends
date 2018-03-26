@@ -1,0 +1,59 @@
+<%= form_for @user do |form| %>
+    <%= render 'shared/error_messages' %>
+    <!-- Name -->
+    <div class="field-wrap">
+        <tr>
+            <td><%= form.label :name do %>Name:<span class="req">*</span><% end %></td>
+            <td><%= form.text_field :name, type: 'text', placeholder: 'Your name...', required: 'required', autocomplete: 'off' %></td>
+        </tr>
+    </div>
+    
+    <!-- Email -->
+    <div class="field-wrap">
+        <%= form.label :email do %>Email:<span class="req">*</span><% end %>
+        <%= form.text_field :email, type: 'email', placeholder: 'Email address...', required: 'required' %>
+    </div>
+
+   <!-- Text -->
+    <div class="field-wrap">
+        <%= form.label :phone do %>Phone:<span class="req">*</span><% end %>
+        <%= form.text_field :phone %>
+    </div>
+
+   <!-- Text -->
+    <div class="field-wrap">
+        <%= form.label :address do %>Address:<span class="req">*</span><% end %>
+        <%= form.text_field :address %>
+    </div>
+
+    <!-- Password -->
+    <div id="edit-password">
+        <%#= link_to "Click here to change password", '#', id='edit-password-link' %>
+        <%# <a href="#" id="edit-password-link">Click here to change password</a> %>
+        <button id="edit-password-link">Click here to change password</buton>
+    </div>
+
+    <!-- Password -->
+    <div class="field-wrap hidden edit-password-field">
+        <%= form.label :password do %>Password:<% end %>
+        <%= form.password_field :password %>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="field-wrap hidden edit-password-field" >
+        <%= form.label :password_confirmation do %>Confirm password:<% end %>
+        <%= form.password_field :password_confirmation %>
+    </div>
+
+    <!-- Submit Button -->
+    <div class="btn-wrap">
+        <%= form.submit class: "button" %>
+    </div>
+<% end %>
+
+<script>
+$('#edit-password-link').click(function(){
+    event.preventDefault();
+    $('.edit-password-field').removeClass('hidden')
+});
+</script>

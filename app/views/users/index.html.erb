@@ -1,0 +1,11 @@
+<h1>Users#index</h1>
+<p>Only for admin users</p>
+
+<% @user.each do |u| %>
+    <div><%= u.name %></div>
+    <div><%= u.email %></div>
+    <div><%= "Password: #{u.password_digest}" %></div>
+    <div><%= link_to "Delete User", user_path(u), method: :delete %></div>
+<% end %>    
+
+

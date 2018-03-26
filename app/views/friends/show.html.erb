@@ -1,0 +1,40 @@
+
+<h1><%= @user.name %></h1>
+<% if current_user.friends?(@user) %>
+    <table>
+        <tr>
+            <th>
+                Email:
+            </th>
+            <td>
+                <%= @friend.email %>
+            </td>
+        </tr>
+        
+        <tr>
+            <th>
+                Phone:
+            </th>
+            <td>
+                <%= @friend.phone %>
+            </td>
+        </tr>
+        
+        <tr>
+            <th>
+                Address:
+            </th>
+            <td>
+                <%= @friend.address %>
+            </td>
+        </tr>
+    </table>
+    <iframe  width="300" height="225" frameborder="0" style="border:0" src="<%= @endpoint%>" allowfullscreen></iframe>
+    <div><%= link_to "Unfollow", user_friend_path(:user_id=>current_user, :id=>@friend), method: :Delete %></div>
+<% elsif current_user.following?(@user) %>
+    <h3>Request sent</h3>
+<% elsif current_user.followed?(@user) %>
+    <div>@user is following you. <%= link_to "Follow back?", user_friends_path(@user), method: :Post %></div>
+<% else %>    
+    <div>Sorry, there must be some error. Please contact the administrator if you have questions.</div>
+<% end %>

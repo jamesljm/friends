@@ -1,0 +1,32 @@
+<%= form_tag search_users_path, method: :get do %>
+    <%= label_tag :search_name, "Search By Name" %>
+    <%= text_field_tag :search_name, nil , placeholder: "Search Friends", id: 'search_field' %>
+    <%= submit_tag "Search", class: "btn btn-light my-2 my-sm-0" %>
+<% end %>
+
+<% @user.each_with_index do |user, i| %>
+    <div>
+        <% if current_user %>
+            <% if user != current_user %>
+                <div><%= user.name %></div>
+                <% if current_user.friends?(user) %>
+                    <div>Friend: <%= link_to "See friend's page", user_friend_path(:user_id => current_user.id, :id => user.id) %></div>
+
+                <% elsif current_user.following?(user) %>
+                    <div>Request sent</div>
+                    <div>Following: <%= link_to "Undo request", user_friend_path(:user_id=>current_user, :id=>user.id), method: :Delete %></div>
+                
+                <% elsif current_user.followed?(user) %>
+                    <div>Followed: <%= link_to "Follow back?", user_friends_path(user), method: :Post %></div>
+                
+                <% else %>    
+                    <div><%= link_to "Send Friend Request", user_friends_path(user), method: :Post %></div>
+                
+                <% end %>
+                </br>
+            <% end %>
+        <% else %>
+            <div><%= user.name %></div>
+        <% end %>
+    </div>    
+<% end %>
