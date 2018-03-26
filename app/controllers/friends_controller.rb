@@ -1,4 +1,6 @@
 class FriendsController < ApplicationController
+  before_action :require_login 
+
   def index
     @friends = []
     @followings = []
@@ -56,4 +58,19 @@ class FriendsController < ApplicationController
     redirect_to user_friends_path(user_id: current_user.id)
     flash[:notice] = "You have unfollowed #{@friend.name}."
   end
+
+  private
+
+  def require_login
+    if !current_user 
+      redirect_to root_path
+      flash[:notice] = "Please login to continue."
+    end  
+  end  
+
+  def check_correct_current_user
+    if params[:id] != current_user.id.to_s
+      redirect_to user_path(current_user)
+    end
+  end  
 end

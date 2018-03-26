@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:edit, :show, :update, :destroy, :following?, :followed?, :friends?]
   before_action :require_login, except: [:new, :create, :search]
   before_action :require_admin, only: [:index]
+  before_action :check_correct_current_user, only: [:show]
 
   def index
     if current_user.admin?
@@ -31,12 +32,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @address = current_user.address
-    url = 'https://www.google.com/maps/embed/v1/place?q='
-    @location = CGI::escape(@address)
-    key = '&key=' + ENV['GOOGLE_MAP_KEY']
-    @endpoint = url + @location + key
-    render 'show'
+    if current_user.address
+      @address = current_user.address
+      url = 'https://www.google.com/maps/embed/v1/place?q='
+      @location = CGI::escape(@address)
+      key = '&key=' + ENV['GOOGLE_MAP_KEY']
+      @endpoint = url + @location + key
+      render 'show'
+    end
   end
 
   def search
@@ -107,4 +110,10 @@ class UsersController < ApplicationController
       flash[:notice] = "Permission denied."
     end  
   end  
+
+  def check_correct_current_user
+    if params[:id] != current_user.id.to_s
+      redirect_to user_path(current_user)
+    end
+  end
 end
