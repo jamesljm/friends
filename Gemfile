@@ -70,5 +70,12 @@ gem 'jquery-rails'
 # Display
 gem 'table_print'
 
-# API
-gem 'figaro'
+group :development, :test do
+  gem "rspec-given"
+  gem 'shoulda'
+  gem 'shoulda-matchers'
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  # gem 'guard-rspec'
+  gem 'rails-controller-testing'
+end
