@@ -4,6 +4,6 @@ class Friend < ApplicationRecord
     validate :no_add_self
 
     def no_add_self
-        user1_id != user2_id
+        errors.add(:same, "kenot add self") if user1_id == user2_id
     end
 end
