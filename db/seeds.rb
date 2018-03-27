@@ -9,7 +9,7 @@
 require 'faker'
 
 ActiveRecord::Base.transaction do
-    5.times {
+    1.times {
         User.create(email: Faker::Internet.email, password: "123456", name: Faker::HarryPotter.character, phone: rand(111111111..999999999), address: Faker::Address.street_address, status: "regular")
     }
 end
@@ -18,7 +18,7 @@ uids = []
 User.all.each {|u| uids << u.id}
 
 ActiveRecord::Base.transaction do
-    100.times do
-        Friend.create(user1_id: uids.sample, user2_id: uids.sample)
+    50.times do
+        Friend.create(user1_id: uids.sample, user2_id: 52)
     end
 end

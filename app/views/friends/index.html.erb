@@ -27,7 +27,7 @@
         <td>
         <% @followeds.each do |followed| %>
             <div><%= followed.name %></div>
-            <%= link_to "Follow back", user_friends_path(followed), method: :Post %>
+            <div><%= link_to "Follow back", user_friends_path(followed), method: :Post %></div>
             </br>
         <% end %>
         </td>
