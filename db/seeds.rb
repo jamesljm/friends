@@ -9,7 +9,7 @@
 require 'faker'
 
 ActiveRecord::Base.transaction do
-    50.times {
+    5.times {
         User.create(email: Faker::Internet.email, password: "123456", name: Faker::HarryPotter.character, phone: rand(111111111..999999999), address: Faker::Address.street_address, status: "regular")
     }
 end
