@@ -2,13 +2,13 @@
 
 <%= form_for :session, url: login_path do |form| %>
     <div class="field-wrap">
-        <%= form.label :email %>
-        <%= form.email_field :email, class: 'form-control' %>
+        <%= form.label :email do %>Name:<span class="req">*</span><% end %>
+        <%= form.email_field :email %>
     </div>
 
     <div class="field-wrap">
-        <%= form.label :password %>
-        <%= form.password_field :password, class: 'form-control' %>
+        <%= form.label :password do %>Name:<span class="req">*</span><% end %>
+        <%= form.password_field :password %>
     </div>
 
     <%= form.submit "Log in", class: "btn btn-primary" %>
