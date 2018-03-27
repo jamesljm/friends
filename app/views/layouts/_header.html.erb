@@ -1,28 +1,28 @@
-<div class="container">
-    <%= link_to "FRIENDS", root_path, id: "logo" %>
-    <nav>
-    <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to "Home", root_path %></li>
+<nav class="navbar navbar-expand-md navbar-dark bg-light">
+    <ul class="nav navbar-nav navbar-expand-md">
+    <%= link_to "FRIENDS", root_path, id: "logo", style: "margin-right: 10em" %>
+        <li class="nav-item" style="margin-left: 1em"><%= link_to "Home", root_path %></li>
         <% if logged_in? %>
-        <li><%= link_to "Users", current_user %></li>
-        <li class="dropdown">
+        <li class="nav-item" style="margin-left: 1em"><%= link_to "Search members", search_users_path %></li>
+        
+        <li class="dropdown" style="margin-left: 1em">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <%= current_user.name %> <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
-            <li><%= link_to "Profile", current_user %></li>
-            <li><%= link_to "Search friends", search_users_path %></li>
-            <li><%= link_to "Your friends", user_friends_path(current_user) %></li>
+            <li class="nav-item" style="margin-left: 1em"><%= link_to "Profile", current_user %></li>
+            <li class="nav-item" style="margin-left: 1em"><%= link_to "Search friends", search_users_path %></li>
+            <li class="nav-item" style="margin-left: 1em"><%= link_to "Your friends", user_friends_path(current_user) %></li>
             <li class="divider"></li>
-            <li>
+            <li class="nav-item" style="margin-left: 1em">
                 <%= link_to "Log out", logout_path, method: :delete %>
             </li>
             </ul>
         </li>
+
         <% else %>
-        <li><%= link_to "Log in", login_path %></li>
-        <li><%= link_to "Sign Up", sign_up_path %></li>
+        <li class="nav-item" style="margin-left: 1em"><%= link_to "Log in", login_path %></li>
+        <li class="nav-item" style="margin-left: 1em"><%= link_to "Sign Up", sign_up_path %></li>
         <% end %>
     </ul>
-    </nav>
-</div>
+</nav>

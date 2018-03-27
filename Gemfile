@@ -81,3 +81,7 @@ group :development, :test do
 end
 
 gem 'faker'
+
+gem 'bootstrap', '~> 4.0.0'
+gem 'sprockets-rails', '~> 3.0', '>= 3.0.4'
+gem 'jquery-rails'

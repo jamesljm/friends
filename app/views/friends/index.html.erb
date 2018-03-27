@@ -1,6 +1,6 @@
 <h1>Friends</h1>
 
-<table>
+<table class="table table-hover">
     <tr>
         <th>FRIENDS</th>
         <th>FOLLOWING</th>
@@ -20,6 +20,7 @@
         <% @followings.each do |following| %>
             <div><%= following.name %></div>
             <div><%= link_to "Unfollow", user_friend_path(:user_id=>current_user, :id=>following), method: :Delete %></div>
+            </br>
         <% end %>
         </td>
 
@@ -27,6 +28,7 @@
         <% @followeds.each do |followed| %>
             <div><%= followed.name %></div>
             <%= link_to "Follow back", user_friends_path(followed), method: :Post %>
+            </br>
         <% end %>
         </td>
     </tr>
