@@ -30,11 +30,13 @@ class FriendsController < ApplicationController
       @friend = nil
     end
     
-    # url = 'https://maps.googleapis.com/maps/api/js?key='
-    url = 'https://www.google.com/maps/embed/v1/place?q='
-    @location = CGI::escape(@address)
-    key = '&key=' + ENV['GOOGLE_MAP_KEY']
-    @endpoint = url + @location + key
+    if @address
+      # url = 'https://maps.googleapis.com/maps/api/js?key='
+      url = 'https://www.google.com/maps/embed/v1/place?q='
+      @location = CGI::escape(@address)
+      key = '&key=' + ENV['GOOGLE_MAP_KEY']
+      @endpoint = url + @location + key
+    end     
   end
 
   def create
